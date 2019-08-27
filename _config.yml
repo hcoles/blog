@@ -4,7 +4,7 @@ title: "Pitest blog"
 description: ""
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
-baseurl: /blog
+baseurl: /
 include: ["_pages"]
 permalink: /:title/
 google_analytics: 'UA-21734044-1'
