@@ -5,7 +5,7 @@ author: henry
 categories: [war stories, java]
 image: assets/images/money.jpg
 description: "Or four one liners every Java programmer should know"
-featured: true
+featured: false
 hidden: false
 ---
 
