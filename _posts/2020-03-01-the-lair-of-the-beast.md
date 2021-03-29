@@ -5,7 +5,7 @@ author: henry
 categories: [war stories]
 image: assets/images/Paolo_Uccello_049.jpg
 description: "A true story from a previous life"
-featured: true
+featured: false
 hidden: false
 ---
 

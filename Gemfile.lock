@@ -44,6 +44,8 @@ GEM
       listen (~> 3.0)
     kramdown (2.3.0)
       rexml
+    kramdown-parser-gfm (1.1.0)
+      kramdown (~> 2.0)
     liquid (4.0.3)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -67,6 +69,7 @@ GEM
 PLATFORMS
   ruby
   x64-mingw32
+  x86_64-linux-musl
 
 DEPENDENCIES
   jekyll-archives
@@ -74,8 +77,9 @@ DEPENDENCIES
   jekyll-paginate
   jekyll-seo-tag
   jekyll-sitemap
-  kramdown
+  kramdown (>= 2.3.0)
+  kramdown-parser-gfm
   rouge
 
 BUNDLED WITH
-   2.0.1
+   2.2.2
