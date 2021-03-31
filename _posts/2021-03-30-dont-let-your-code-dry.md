@@ -23,7 +23,7 @@ The problem with this approach is that you gain nothing by *running* mutation an
 
 Running mutation analysis is where all the cost is.
 
-You don't get any benefit until you look at the reults and do something with them.
+You don't get any benefit until you look at the results and do something with them.
 
 Typically, if the analysis is run overnight, this doesn't happen in a meaningful fashion. The results are largely forgotten and ignored.
 
@@ -37,7 +37,7 @@ This late in the day surviving mutants are a nuisance. You thought the thing you
 
 You might add a test or two, or remove some obviously redundant code, but the motivation to make any major change is lacking. You'll take the easy route to fix things, and that can make a codebase worse in ways that are difficult to measure. Adding a test that's highly coupled to the code is often easy. Adding one that isn't is much harder.
 
-The way you react to feedback late in development is different than the way you react when the code is still wet. To use mutation testing effectively you need to do it before everything has dried.
+The way you react to feedback late in development is different from the way you react when the code is still wet. To use mutation testing effectively you need to do it before everything has dried.
 
 ## How I mutation test
 
@@ -84,7 +84,7 @@ For a maven build I usually set things up something like this
     </profile>
 ```
 
-Pitest is run only when a profile is active. By default it will mutate everything in the project, but I can pass a glob on the commandline to limit the analysis.
+Pitest is run only when a profile is active. By default, it will mutate everything in the project, but I can pass a glob on the commandline to limit the analysis.
 
 ```bash
 mvn -Ppitest --DwithHistory=true -DtargetClasses="the.package.i.changed.*" test
@@ -96,15 +96,15 @@ This approach works. It works really well. It scales to codebases of any size. I
 
 Pitest nudges me to remove duplication and make my code simpler. It makes me a better programmer, even on the bad days when I'm not thinking straight. Pitest has my back and catches my mistakes for me.
 
-There are some disadvantages to this approach though. I can forget to do it, so there's no gurantee that pitest will be run. And when I do remember, its an invisible activity. No one knows its happened. This means that the practice is less likely to spread.
+There are some disadvantages to this approach though. I can forget to do it, so there's no guarantee that pitest will be run. And when I do remember, it's an invisible activity. No one knows its happened. This means that the practice is less likely to spread.
 
 ## Pitest on the CI server
 
-Since 2013 pitest has had a maven goal that integrates with version control. In theory I could use this to mutate just my locally changed code without passing a glob around, but in practice I rarely do. There are some awkward edge cases caused by the fact that pitest works in terms of bytecode and java packages, while source control works in terms of source files on disk, and playing about with maven version control config can sometimes be less than fun.
+Since 2013 pitest has had a maven goal that integrates with version control. In theory, I could use this to mutate just my locally changed code without passing a glob around, but in practice I rarely do. There are some awkward edge cases caused by the fact that pitest works in terms of bytecode and java packages, while source control works in terms of source files on disk, and playing about with maven version control config can sometimes be less than fun.
 
 The way I have used it, is to run pitest against pull requests. As only the changed code is analysed it's fast, even on large code bases, but it's never worked out particularly well for me.
 
-The issue is that the output is not easily accessible. It's not hard access, but there are speed bumps in the way. It ends up as a report you have to download from the CI server, or a URL you need to find to click on to view. 
+The issue is that the output is not easily accessible. It's not hard to access, but there are speed bumps in the way. It ends up as a report you have to download from the CI server, or a URL you need to find to click on to view. 
 
 It's easy to ignore, and the feedback is slower than running it locally. So I mainly use this approach for reviewing other people's code, rather than as part of my own feedback loop. And I still need to be aware of those edge cases I mentioned earlier.
 
@@ -112,9 +112,9 @@ So, pitest on the CI server has some uses, but I only ever use is as an addition
 
 ## How does Google do it?
 
-Gogole does mutation testing too. You can read all about it [here](https://research.google/pubs/pub46584/).
+Google does mutation testing too. You can read all about it [here](https://research.google/pubs/pub46584/).
 
-Mutation testing at google is integrated into their code review process, presenting programmers with a random sample of surving mutants in a diff. They report all sorts of improvements they've seen in the teams that are using it, and apparently 70% of bugs at google [could have been prevented](https://homes.cs.washington.edu/~rjust/publ/mutation_testing_practices_icse_2021.pdf) by a test written in response to one of their mutants. 
+Mutation testing at google is integrated into their code review process, presenting programmers with a random sample of surviving mutants in a diff. They report all sorts of improvements they've seen in the teams that are using it, and apparently 70% of bugs at google [could have been prevented](https://homes.cs.washington.edu/~rjust/publ/mutation_testing_practices_icse_2021.pdf) by a test written in response to one of their mutants. 
 
 So it's working for them. It's similar to my 'pitest on pull requests' approach, but the ergonomics are better. They've concentrated on removing noise and highlighting the mutants they think are most valuable. It's less timely than my 'mutate locally' approach, but it's still happening while the code is quite wet. That's why it works.
 
@@ -122,9 +122,9 @@ It has some disadvantages though: it's a build server only activity and is based
 
 ## A better way to work
 
-I've been doing some work recently to improve both my "mutate it locally" and "pitest on pull request" approachs.
+I've been doing some work recently to improve both my "mutate it locally" and "pitest on pull request" approaches.
 
-It's a two part soloution. Firstly, a new pitest plugin integrates tightly with git. Unlike the existing version control integration it isn't tied to maven, so it can be run from gradle or ant as well.
+It's a two part solution. Firstly, a new pitest plugin integrates tightly with git. Unlike the existing version control integration it isn't tied to maven, so it can be run from gradle or ant as well.
 
 Once the plugin is added you can analyse just your local changes with
 
@@ -132,7 +132,7 @@ Once the plugin is added you can analyse just your local changes with
 pitest -Ppitest -Dfeatures="+GIT" test
 ```
 
-The analysis is more fine grained than before. By default its limited to just the modified lines. This means it takes less time, but more importantly it reduces the noise. The results you see are now only those that are actually in the change. This is true locally, but also when run against a pull request.
+The analysis is more fine-grained than before. By default, it's limited to just the modified lines. This means it takes less time, but more importantly it reduces the noise. The results you see are now only those that are actually in the change. This is true locally, but also when run against a pull request.
 
 The problems with bytecode mapping back and forth have also been solved, so no more edge cases to worry about.
 
@@ -142,9 +142,9 @@ If I'm working with old code, and want to see what mutants look like in all the 
 pitest -Ppitest -Dfeatures="+GIT(scope[class])" test
 ```
 
-But most of the time I want the faster, more relevent feedback.
+But most of the time I want the faster, more relevant feedback.
 
-The second part of the soloution are plugins for maven and gradle that create comments and annotations directly in Github pull requests, and Gitlab merge requests. 
+The second part of the solutions are plugins for maven and gradle that create comments and annotations directly in Github pull requests, and Gitlab merge requests. 
 
 Only the surviving mutants are displayed, and there are a few other tweaks to make the output clear and easy to understand.
 
@@ -174,4 +174,4 @@ Mutation testing is now a visible activity. Everyone gets the feedback. They're 
 
 I'm still tweaking and improving the plugins, if you'd be interested in trying them out with your team please get in touch at pitest@groupcdg.com.
 
-Unfortuantely, due to the way that Github API access works, the plugins work well for closed source development, but are not yet a good fit for open source projects where pull requests come from potentially malicious sources in forked repos. We're hoping to come up with a soloution for this soon so everyone can benefit from pitest on their PRs.
+Unfortunately, due to the way that Github API access works, the plugins work well for closed source development, but are not yet a good fit for open source projects where pull requests come from potentially malicious sources in forked repos. We're hoping to come up with a solution for this soon so everyone can benefit from pitest on their PRs.
