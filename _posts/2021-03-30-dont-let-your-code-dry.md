@@ -174,4 +174,6 @@ Mutation testing is now a visible activity. Everyone gets the feedback. They're 
 
 I'm still tweaking and improving the plugins, if you'd be interested in trying them out with your team please get in touch at pitest.demo@groupcdg.com.
 
-Unfortunately, due to the way that Github API access works, the plugins work well for closed source development, but are not yet a good fit for open source projects where pull requests come from potentially malicious sources in forked repos. We're hoping to come up with a solution for this soon so everyone can benefit from pitest on their PRs.
+~~Unfortunately, due to the way that Github API access works, the plugins work well for closed source development, but are not yet a good fit for open source projects where pull requests come from potentially malicious sources in forked repos. We're hoping to come up with a solution for this soon so everyone can benefit from pitest on their PRs.~~
+
+Setting up pitest on pr for open source projects is slightly more involved as pull requests come from untrusted forks, but I've being trying out a solution that I'll post about soon.
