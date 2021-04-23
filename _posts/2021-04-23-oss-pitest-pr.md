@@ -9,7 +9,7 @@ featured: true
 hidden: false
 ---
 
-I [wrote recently](/dont-let-your-code-dry) about the work I've been doing with CDG to create a smooth process for running pitest against pull requests on github[^octocat]. This way is a great way to mutation test large projects, or to introduce it to projects where its not been used before.
+I [wrote recently](/dont-let-your-code-dry) about the work I've been doing with CDG to create a smooth process for running pitest against pull requests on github. This way is a great way to mutation test large projects, or to introduce it to projects where its not been used before.
 
 There was a problem though. In order to update a PR, the plugin needs an api token with write access. For very good reasons github does not give write access to PRs that come from forks of a repo. So the plugin couldn't be used by most open source projects.
 
@@ -56,4 +56,3 @@ If you'd like to use it on your OSS project, please [get in touch](mailto:pitest
 
 Really, don't be afraid to ask. We'd like to get as many people mutation testing as possible.
 
-[^octocat]: Octocat image 
