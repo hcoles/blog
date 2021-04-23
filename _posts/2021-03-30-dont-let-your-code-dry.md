@@ -5,7 +5,7 @@ author: henry
 categories: [pitest, java]
 image: assets/images/paint.png
 description: "How to mutation test effectively"
-featured: true
+featured: false 
 hidden: false
 ---
 
