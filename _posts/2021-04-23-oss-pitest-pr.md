@@ -5,7 +5,7 @@ author: henry
 categories: [pitest, java]
 image: assets/images/fork.jpg
 description: "How to setup pitest on pull request"
-featured: true
+featured: false 
 hidden: false
 ---
 
