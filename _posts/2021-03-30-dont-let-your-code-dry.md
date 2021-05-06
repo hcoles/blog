@@ -129,7 +129,7 @@ It's a two part solution. Firstly, a new pitest plugin integrates tightly with g
 Once the plugin is added you can analyse just your local changes with
 
 ```bash
-pitest -Ppitest -Dfeatures="+GIT" test
+mvn -Ppitest -Dfeatures="+GIT" test
 ```
 
 The analysis is more fine-grained than before. By default, it's limited to just the modified lines. This means it takes less time, but more importantly it reduces the noise. The results you see are now only those that are actually in the change. This is true locally, but also when run against a pull request.
@@ -139,7 +139,7 @@ The problems with bytecode mapping back and forth have also been solved, so no m
 If I'm working with old code, and want to see what mutants look like in all the classes I touch I can replicate the old behaviour by running
 
 ```bash
-pitest -Ppitest -Dfeatures="+GIT(scope[class])" test
+mvn -Ppitest -Dfeatures="+GIT(scope[class])" test
 ```
 
 But most of the time I want the faster, more relevant feedback.
