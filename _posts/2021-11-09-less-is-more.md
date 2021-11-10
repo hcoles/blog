@@ -202,7 +202,7 @@ boolean mutateMe(int i) {
 }
 ```
 
-Then, if we refer back to our table, we can see that it would be the `always true` mutation that would be subsumed.
+Then, if we refer back to our table, we can see that it would be the `always false` mutation that would be subsumed.
 
 So we need a sharper tool.
 
