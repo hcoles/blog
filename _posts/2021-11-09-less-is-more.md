@@ -41,27 +41,7 @@ Here's a bit of toy java code.
   }
 ```
 
-If we were to run pitest against this with just the true returns mutator enabled, it would create the following mutants (shown here both seeded into the code at once for brevity).
-
-```java
-  public List<Path> doStuff(Collection<Path> paths) {
-    return paths.stream()
-      .filter(f -> true) // (TR1) 
-      .filter(this::checkPath)
-      .collect(Collectors.toList());
-  }
-
-  boolean checkPath(Path path) {
-    // bit of random logic
-    return true; // (TR2)
-  }
-```
-
-Clearly, these two mutants do not give us much confidence. Pitest has effectively removed the first filter by mutating the lambda the compiler generates for the `Files::exists` method reference, and has effectively removed the second filter by forcing `checkPath` to always return true.
-
-If our test suite only ever passes `doStuff` collections of files that exist and have non zero sizes, it will pass when these mutations are present.
-
-We would gain much more confidence if we also enabled the `FALSE_RETURNS` mutator. This adds the following mutants
+If we were to run pitest against this with just the false returns mutator enabled, it would create the following mutants (shown here both seeded into the code at once for brevity).
 
 ```java
   public List<Path> doStuff(Collection<Path> paths) {
@@ -77,10 +57,27 @@ We would gain much more confidence if we also enabled the `FALSE_RETURNS` mutato
   }
 ```
 
-These mutants will survive unless our test suite also checks what happens when we pass in files that are empty, and files that don't exist.
+Clearly, these two mutants do not give us much confidence. A test suite that passed in only empty collections of paths (or collections of non existent files) would not detect these mutants, but any test that supplied a collection with a file the existed and passed the logic in `checkPath` would kill them both.
+
+We would gain more confidence if we also enabled the `TRUE_RETURNS` mutator. This adds the following mutants :-
+
+```java
+  public List<Path> doStuff(Collection<Path> paths) {
+    return paths.stream()
+      .filter(f -> true) // (TR1) 
+      .filter(this::checkPath)
+      .collect(Collectors.toList());
+  }
+
+  boolean checkPath(Path path) {
+    // bit of random logic
+    return true; // (TR2)
+  }
+```
+
+Pitest has effectively removed the first filter by mutating the lambda the compiler generates for the `Files::exists` method reference, and has effectively removed the second filter by forcing `checkPath` to always return true. Killing these mutants requires us to also pass in paths that do not exists and fail the logic in `checkPath`.    
 
 Lets add some more operators and see if our confidence increases further. The `EMPTY_RETURNS` operator adds the following mutant :-
-
 
 ```java
   public List<Path> doStuff(Collection<Path> paths) {
@@ -92,7 +89,7 @@ Lets add some more operators and see if our confidence increases further. The `E
   }
 ```
 
-But this gives no additional value. If the other mutants didn't exist it would be useful. It would ensure we had a test that passes in a non empty collection of Paths, and checked the output. But when the other mutants are present it provides no benefit. You could not write a test that passed when `ER1` was present, but did not also pass when `TR1`, or `TR2` were present.
+But this gives no additional value. If the other mutants didn't exist it would be useful. It would ensure we had a test that passes in a non empty collection of Paths, and checked the output. But when the other mutants are present it provides no benefit. You could not write a test that passed when `ER1` was present, but did not also pass when `FR1`, or `FR2` were present.
 
 And this is the problem with creating lots of mutants. Having more mutants is guaranteed to create more mundane practical issues, such as slower analysis and information overload, but it doesn't guarantee more confidence in your test suite. And if you are tracking a codebase's mutation score (which I do not recommend) it can be misleading. You can make the score go **up** by enabling more operators.
 
