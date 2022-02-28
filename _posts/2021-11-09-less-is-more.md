@@ -205,8 +205,8 @@ So we need a sharper tool.
 
 # Introducing Subsumption Analysis
 
-I've talked before about the [pitest extensions](https://pitest.groupcdg.com/) I have been developing with Group CDG. They now include a new plugin that adds new mutation operators, but also adds subsumption analysis to reduce the overall number of mutations.
+I've talked before about the [pitest extensions](https://www.arcmutate.com/) I have been developing with Group CDG. They now include a new plugin that adds new mutation operators, but also adds subsumption analysis to reduce the overall number of mutations.
 
 The result is a new stronger mutation analysis, which seeds faults into code that pitest cannot, while keeping the number of mutants low and the signal to noise ration high.
 
-If you'd like to try it out, details of our beta programme are on the [CDG pitest site](https://pitest.groupcdg.com/). 
+If you'd like to try it out, details of our beta programme are on the [Arcmutate site](https://www.arcmutate.com/). 
