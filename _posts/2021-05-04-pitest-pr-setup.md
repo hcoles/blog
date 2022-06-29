@@ -154,7 +154,7 @@ The plugin is added to the pitest configuration (not the project dependencies) s
 
 The version number has been placed in a property. We only use it here just now, but in step 4 we'll add some more dependencies to the pom that need the version to match.
 
-To get a licence [send a mail](mailto:pitest.demo@groupcdg.com) with the details of your project. They're free for OSS projects of any size, and we're giving away a limited number of licences to commercial teams. Don't be afraid to ask.
+To get a licence [send a mail](mailto:support@arcmutate.com) with the details of your project. They're free for OSS projects of any size, and we're giving away a limited number of licences to commercial teams. Don't be afraid to ask.
 
 Once you have a licence place it in the root of your repo (it doesn't need to be kept secret) with the name `cdg-pitest-licence.txt`
 

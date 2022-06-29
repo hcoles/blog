@@ -52,7 +52,7 @@ The [demo project](https://github.com/GroupCDG-Labs/pitest-github-demo) has been
 
 Feel free to create some PRs to try it out.
 
-If you'd like to use it on your OSS project, please [get in touch](mailto:pitest.demo@groupcdg.com) and we'll give you a free licence. 
+If you'd like to use it on your OSS project, please [get in touch](mailto:support@arcmutate.com) and we'll give you a free licence. 
 
 Really, don't be afraid to ask. We'd like to get as many people mutation testing as possible.
 
