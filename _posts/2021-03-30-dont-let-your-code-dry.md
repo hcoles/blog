@@ -172,7 +172,7 @@ Mutation testing is now a visible activity. Everyone gets the feedback. They're 
 
 ## Want to try it?
 
-I'm still tweaking and improving the plugins, if you'd be interested in trying them out with your team please get in touch at pitest.demo@groupcdg.com.
+The plugins are now available at [arcmutate](https://www.arcmutate.com).
 
 ~~Unfortunately, due to the way that Github API access works, the plugins work well for closed source development, but are not yet a good fit for open source projects where pull requests come from potentially malicious sources in forked repos. We're hoping to come up with a solution for this soon so everyone can benefit from pitest on their PRs.~~
 
